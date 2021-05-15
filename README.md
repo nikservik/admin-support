@@ -1,11 +1,11 @@
-# :package_description
+# Support admin panel
 
 Используется вместе с пакетом `nikservik/admin-dashboard`.
 
 ## Установка
 
 ```bash
-composer require vendor_slug/package_slug
+composer require nikservik/admin-support
 ```
 
 ## Использование

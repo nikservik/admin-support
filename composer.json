@@ -1,55 +1,80 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "nikservik/admin-support",
+    "description": "Support admin panel",
     "keywords": [
-        ":vendor_name",
+        "nikservik",
         "laravel",
-        "package_slug"
+        "admin-support"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/nikservik/admin-support",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Sergey Nikiforov",
+            "email": "ser.nikiforov@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/contracts": "^8.0"
+        "illuminate/contracts": "^8.0",
+        "lorisleiva/laravel-actions": "^2.1",
+        "nikservik/simple-support": "^2.0",
+        "nikservik/admin-dashboard": "^1.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.15",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "phpunit/phpunit": "^9.3",
         "spatie/laravel-ray": "^1.9",
         "vimeo/psalm": "^4.4"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Tests\\Database\\Factories\\": "tests/database/factories"
+            "Nikservik\\AdminSupport\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Nikservik\\AdminSupport\\Tests\\": "tests",
+            "App\\": "skeleton/app/",
+            "Database\\Factories\\": "skeleton/database/factories/"
         }
     },
     "scripts": {
         "psalm": "vendor/bin/psalm",
         "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
-        "sort-packages": true
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "github-oauth": {
+            "github.com": "304404ab99d5ad6aec973ae8fe97c27a0d433b73"
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Nikservik\\AdminSupport\\AdminSupportServiceProvider"
             ]
         }
     },
+    "repositories" : [
+        {
+            "type": "vcs",
+            "url" : "git@github.com:nikservik/simple-support.git"
+        },
+        {
+            "type": "vcs",
+            "url" : "git@github.com:nikservik/admin-dashboard"
+        },
+        {
+            "type": "vcs",
+            "url" : "git@github.com:nikservik/users"
+        }
+    ],
     "prefer-stable": true
 }

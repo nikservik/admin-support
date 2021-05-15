@@ -14,16 +14,16 @@
 
 <div class="my-6 mx-2 md:mx-10 flex">
 	<div class="w-1/2 text-right pr-2">
-		@if(! $messages->onFirstPage())
-			<a class="selector" href="{{ $messages->previousPageUrl() }}">
-				‹ @lang('admin-support::admin.later')
+		@if($messages->hasMorePages())
+			<a class="selector" href="{{ $messages->nextPageUrl() }}">
+				▲ @lang('admin-support::admin.earlier')
 			</a>
 		@endif
 	</div>
 	<div class="w-1/2 pl-2">
-		@if($messages->hasMorePages())
-			<a class="selector" href="{{ $messages->nextPageUrl() }}">
-				@lang('admin-support::admin.earlier') ›
+		@if(! $messages->onFirstPage())
+			<a class="selector" href="{{ $messages->previousPageUrl() }}">
+                @lang('admin-support::admin.later') ▼
 			</a>
 		@endif
 	</div>

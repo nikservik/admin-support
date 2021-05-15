@@ -3,13 +3,11 @@
 
 namespace Nikservik\AdminSupport\Actions\SupportMessage;
 
-
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Validator;
 use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
-use Lorisleiva\Actions\Concerns\AsObject;
 use Nikservik\AdminDashboard\Middleware\AdminMiddleware;
 use Nikservik\SimpleSupport\Models\SupportMessage;
 
@@ -30,7 +28,7 @@ class EditSupportMessage
     {
         return view('admin-support::edit', [
             'supportMessage' => $message,
-            'user' => $message->user
+            'user' => $message->user,
         ]);
     }
 
@@ -42,5 +40,4 @@ class EditSupportMessage
             $validator->errors()->add('message', 'cant_update_user_message');
         }
     }
-
 }

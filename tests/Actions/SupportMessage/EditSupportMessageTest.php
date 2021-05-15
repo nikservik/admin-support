@@ -3,13 +3,11 @@
 namespace Nikservik\AdminSupport\Tests\Actions\SupportMessage;
 
 use App\Models\User;
-use Nikservik\AdminSupport\Actions\SupportMessage\EditSupportMessage;
 use Nikservik\AdminSupport\Tests\TestCase;
 use Nikservik\SimpleSupport\Models\SupportMessage;
 
 class EditSupportMessageTest extends TestCase
 {
-
     public function test_edit_message()
     {
         $user = User::factory()->create();
@@ -51,5 +49,4 @@ class EditSupportMessageTest extends TestCase
             ->get("/support/message/{$message->id}")
             ->assertRedirect('/login');
     }
-
 }

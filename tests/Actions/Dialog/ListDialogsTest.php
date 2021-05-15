@@ -3,14 +3,12 @@
 namespace Nikservik\AdminSupport\Tests\Actions\Dialog;
 
 use App\Models\User;
-use Carbon\Carbon;
 use Nikservik\AdminSupport\Actions\Dialog\ListDialogs;
 use Nikservik\AdminSupport\Tests\TestCase;
 use Nikservik\SimpleSupport\Models\SupportMessage;
 
 class ListDialogsTest extends TestCase
 {
-
     public function testHandleEmpty()
     {
         $dialogs = ListDialogs::run('all');

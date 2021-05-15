@@ -3,9 +3,7 @@
 
 namespace Nikservik\AdminSupport\Actions\SupportMessage;
 
-
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Lorisleiva\Actions\ActionRequest;
@@ -34,7 +32,7 @@ class CreateSupportMessage
             ->save(new SupportMessage([
                 'message' => $message,
                 'user_id' => $user->id,
-                'type' => 'supportMessage'
+                'type' => 'supportMessage',
             ]));
     }
 

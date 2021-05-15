@@ -22,5 +22,4 @@ class ListNotifications
         )
             ->middleware(['web', 'auth', AdminMiddleware::class]);
     }
-
 }

@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Actions\Dialog;
 
-
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +38,7 @@ class SearchDialog
 
         $dialogs = $this->handle($query);
 
-    	return view('admin-support::index', [
+        return view('admin-support::index', [
             'dialogs' => $dialogs,
             'list' => 'search',
             'query' => $query,
@@ -52,8 +51,8 @@ class SearchDialog
         return array_merge($stats, [
             'all' => User::has('supportMessages')->count(),
             'unread' => User::whereHas('supportMessages', function ($query) {
-                    $query->where('type', 'userMessage')->whereNull('read_at');
-                })->count()
+                $query->where('type', 'userMessage')->whereNull('read_at');
+            })->count(),
         ]);
     }
 }

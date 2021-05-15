@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Tests\Actions\SupportMessage;
 
-
 use App\Models\User;
 use Nikservik\AdminSupport\Actions\SupportMessage\UpdateSupportMessage;
 use Nikservik\AdminSupport\Tests\TestCase;
@@ -83,5 +82,4 @@ class UpdateSupportMessageTest extends TestCase
             ->patch("/support/message/{$message->id}")
             ->assertRedirect('/login');
     }
-
 }

@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Tests\Actions\Dialog;
 
-
 use App\Models\User;
 use Nikservik\AdminSupport\Actions\Dialog\SearchDialog;
 use Nikservik\AdminSupport\Tests\TestCase;
@@ -11,7 +10,6 @@ use Nikservik\SimpleSupport\Models\SupportMessage;
 
 class SearchDialogTest extends TestCase
 {
-
     public function testHandleEmpty()
     {
         $dialogs = SearchDialog::run('test');

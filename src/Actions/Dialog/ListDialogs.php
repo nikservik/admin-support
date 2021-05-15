@@ -3,10 +3,7 @@
 
 namespace Nikservik\AdminSupport\Actions\Dialog;
 
-
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Lorisleiva\Actions\ActionRequest;
@@ -29,10 +26,10 @@ class ListDialogs
     public function handle(string $list)
     {
         return User::whereHas('supportMessages', function ($query) use ($list) {
-                if ($list == 'unread') {
-                    $query->where('type', 'userMessage')->whereNull('read_at');
-                }
-            })
+            if ($list == 'unread') {
+                $query->where('type', 'userMessage')->whereNull('read_at');
+            }
+        })
             ->with(['supportMessages' => function ($query) use ($list) {
                 $query->where('type', 'userMessage')->latest();
                 if ($list == 'unread') {
@@ -42,7 +39,8 @@ class ListDialogs
             ->withCount(['supportMessages as unread' => function ($query) {
                 $query->where('type', 'userMessage')->whereNull('read_at');
             }])
-            ->orderByDesc(SupportMessage::select('created_at')
+            ->orderByDesc(
+                SupportMessage::select('created_at')
                 ->whereColumn('user_id', 'users.id')->orderBy('created_at', 'desc')->limit(1)
             )
             ->paginate(Config::get('admin-support.messages-per-page'));
@@ -58,7 +56,7 @@ class ListDialogs
 
         $dialogs = $this->handle($list);
 
-    	return view('admin-support::index', [
+        return view('admin-support::index', [
             'dialogs' => $dialogs,
             'list' => $list,
             'stats' => $this->stats([$list => $dialogs->total()]),

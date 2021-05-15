@@ -4,17 +4,14 @@ namespace Nikservik\AdminSupport\Tests;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Lorisleiva\Actions\ActionServiceProvider;
 use Nikservik\AdminDashboard\AdminDashboardServiceProvider;
+use Nikservik\AdminSupport\AdminSupportServiceProvider;
 use Nikservik\Users\UsersServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Nikservik\AdminSupport\AdminSupportServiceProvider;
 
 class TestCase extends Orchestra
 {
-
     protected User $user;
     protected User $admin;
 

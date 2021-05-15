@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Tests\Actions\SupportMessage;
 
-
 use App\Models\User;
 use Nikservik\AdminSupport\Actions\SupportMessage\DeleteSupportMessage;
 use Nikservik\AdminSupport\Tests\TestCase;
@@ -71,5 +70,4 @@ class DeleteSupportMessageTest extends TestCase
 
         $this->assertCount(1, $user->supportMessages);
     }
-
 }

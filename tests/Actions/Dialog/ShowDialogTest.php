@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Tests\Actions\Dialog;
 
-
 use App\Models\User;
 use Nikservik\AdminSupport\Actions\Dialog\ShowDialog;
 

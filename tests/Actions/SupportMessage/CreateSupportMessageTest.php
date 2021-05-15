@@ -3,7 +3,6 @@
 
 namespace Nikservik\AdminSupport\Tests\Actions\SupportMessage;
 
-
 use App\Models\User;
 use Nikservik\AdminSupport\Actions\SupportMessage\CreateSupportMessage;
 use Nikservik\AdminSupport\Tests\TestCase;
@@ -75,5 +74,4 @@ class CreateSupportMessageTest extends TestCase
             ])
             ->assertRedirect('/login');
     }
-
 }

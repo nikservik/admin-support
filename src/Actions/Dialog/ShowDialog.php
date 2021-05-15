@@ -3,12 +3,10 @@
 
 namespace Nikservik\AdminSupport\Actions\Dialog;
 
-
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
-use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsController;
 use Lorisleiva\Actions\Concerns\AsObject;
 use Nikservik\AdminDashboard\Middleware\AdminMiddleware;
@@ -38,7 +36,7 @@ class ShowDialog
 
     public function asController(User $user)
     {
-    	return view('admin-support::show', [
+        return view('admin-support::show', [
             'messages' => $this->handle($user),
             'user' => $user,
         ]);

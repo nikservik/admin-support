@@ -37,6 +37,7 @@
 			@if($messages[$index]->type == 'userMessage') {{ $user->name }} @endif
 			{{ $messages[$index]->created_at->addHours(3)->format('d.m.Y H:i') }}
 			@lang('admin-support::admin.moscow-time')
+            @if($messages[$index]->type == 'supportMessage' && $messages[$index]->read_at !== null)✔@endif
 		</div>
 		<div class="message">
     		{!! $messages[$index]->message !!}

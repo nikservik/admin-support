@@ -52,6 +52,7 @@ php artisan vendor:publish --tag="admin-support-config"
 composer test
 ```
 
-## Changelog
+## История изменений
 
-
+### 1.1
+- оптимизация выборки списка сообщений

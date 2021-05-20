@@ -48,11 +48,6 @@ class SearchDialog
 
     protected function stats(array $stats): array
     {
-        return array_merge($stats, [
-            'all' => User::has('supportMessages')->count(),
-            'unread' => User::whereHas('supportMessages', function ($query) {
-                $query->where('type', 'userMessage')->whereNull('read_at');
-            })->count(),
-        ]);
+        return array_merge($stats, ListDialogs::stats());
     }
 }

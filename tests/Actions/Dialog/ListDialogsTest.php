@@ -11,7 +11,7 @@ class ListDialogsTest extends TestCase
 {
     public function testHandleEmpty()
     {
-        $dialogs = ListDialogs::run('all');
+        $dialogs = ListDialogs::run('all', 1, 10);
 
         $this->assertCount(0, $dialogs);
     }
@@ -20,7 +20,7 @@ class ListDialogsTest extends TestCase
     {
         User::factory()->count(3)->hasSupportMessages(5)->create();
 
-        $dialogs = ListDialogs::run('all');
+        $dialogs = ListDialogs::run('all', 1, 10);
 
         $this->assertCount(3, $dialogs);
     }
@@ -30,17 +30,17 @@ class ListDialogsTest extends TestCase
         User::factory()->hasSupportMessages(5)->create();
         User::factory()->create();
 
-        $dialogs = ListDialogs::run('all');
+        $dialogs = ListDialogs::run('all', 1, 10);
 
         $this->assertCount(1, $dialogs);
     }
 
     public function test_list_dialogs_empty()
     {
+        $this->withoutExceptionHandling();
         $this->actingAs($this->admin)
             ->get('/support')
-            ->assertOk()
-            ->assertViewHas('dialogs');
+            ->assertOk();
     }
 
     public function test_list_dialogs()

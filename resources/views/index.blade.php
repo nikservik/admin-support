@@ -31,13 +31,15 @@
     </div>
 </div>
 
-@forelse ($dialogs as $dialog)
-    @include('admin-support::card', ['dialog' => $dialog])
-@empty
+@if(count($dialogs) > 0)
+    @for($index=count($dialogs)-1 ; $index>=0 ; $index--)
+        @include('admin-support::card', ['dialog' => $dialogs[$index]])
+    @endfor
+@else
     <div class="p-4 m-4 rounded-lg bg-white text-center text-gray-700 shadow">
         @lang('admin-support::admin.list-empty')
     </div>
-@endforelse
+@endif
 
 {{ $dialogs->links('admin-dashboard::pagination') }}
 

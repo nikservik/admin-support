@@ -42,6 +42,10 @@ class ListDialogs
             ->withCount(['supportMessages as unread' => function ($query) {
                 $query->where('type', 'userMessage')->whereNull('read_at');
             }])
+           ->orderByDesc(
+                SupportMessage::select('created_at')
+                ->whereColumn('user_id', 'users.id')->orderBy('created_at', 'desc')->limit(1)
+            )
             ->get();
     }
 

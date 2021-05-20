@@ -40,7 +40,7 @@ class CreateSupportMessage
     {
         $this->handle($request->get('message'), $user);
 
-        return redirect("/support/dialog/{$user->id}#read");
+        return redirect('/' . Config::get('admin-support.route') . "/dialog/{$user->id}#read");
     }
 
     public function rules(): array

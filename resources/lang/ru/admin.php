@@ -20,6 +20,7 @@ return [
     'moscow-time' => '(мск)',
     'confirm-delete' => 'Удалить сообщение?',
     'placeholder' => 'Поиск по сообщениям',
+    'message-placeholder' => 'Отправить сообщение',
     'errors' => [
         'message_required' => 'Нельзя отправить пустое сообщение',
         'message_min' => 'Напишите хотя бы 2 буквы',

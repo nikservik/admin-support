@@ -5,11 +5,14 @@ namespace Nikservik\AdminSupport\Actions\Dialog;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Lorisleiva\Actions\Concerns\AsController;
 use Lorisleiva\Actions\Concerns\AsObject;
 use Nikservik\AdminDashboard\Middleware\AdminMiddleware;
+use Nikservik\SimpleSupport\Actions\GetSupportMessages;
+use Nikservik\SimpleSupport\Models\SupportMessage;
 
 class ShowDialog
 {
@@ -29,7 +32,14 @@ class ShowDialog
     {
         $this->markAsRead($user);
 
-        return $user->supportMessages()
+        return SupportMessage::where(function ($query) use ($user) {
+            $query->where('user_id', $user->id)
+                ->orWhere(fn ($query) =>
+                    $query->whereNull('user_id')
+                        ->where('type', 'notification')
+                );
+            })
+            ->where('type', '<>', 'notificationRead')
             ->latest()
             ->paginate(Config::get('admin-support.messages-per-page'));
     }

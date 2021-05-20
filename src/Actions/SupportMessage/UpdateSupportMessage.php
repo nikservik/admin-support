@@ -35,7 +35,7 @@ class UpdateSupportMessage
     {
         $this->handle($message, $request->get('message'));
 
-        return redirect("/support/dialog/{$message->user_id}#read");
+        return redirect('/' . Config::get('admin-support.route') . "/dialog/{$message->user_id}#read");
     }
 
     public function rules(): array

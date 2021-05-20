@@ -32,9 +32,7 @@
 </div>
 
 @if(count($dialogs) > 0)
-    @for($index=count($dialogs)-1 ; $index>=0 ; $index--)
-        @include('admin-support::card', ['dialog' => $dialogs[$index]])
-    @endfor
+    @each('admin-support::card', $dialogs, 'dialog')
 @else
     <div class="p-4 m-4 rounded-lg bg-white text-center text-gray-700 shadow">
         @lang('admin-support::admin.list-empty')

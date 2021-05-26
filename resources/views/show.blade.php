@@ -49,6 +49,18 @@
             </div>
         </div>
     @endfor
+        <div class="text-right my-4">
+            @if($opened)
+                <a class="small light button"
+                    href="/{{ config('admin-support.route') }}/dialog/{{ $user->id }}/close">@lang('admin-support::admin.close')</a>
+                @if(session()->has('return-url'))
+                    <a class="small light button"
+                        href="/{{ config('admin-support.route') }}/dialog/{{ $user->id }}/close/return">@lang('admin-support::admin.close-and-return')</a>
+                @endif
+            @else
+                <button class="small light button inline-block" disabled>@lang('admin-support::admin.closed')</button>
+            @endif
+        </div>
     </div>
 
     @if(! $messages->onFirstPage())

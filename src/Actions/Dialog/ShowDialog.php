@@ -8,6 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 use Lorisleiva\Actions\Concerns\AsController;
 use Lorisleiva\Actions\Concerns\AsObject;
 use Nikservik\AdminDashboard\Middleware\AdminMiddleware;
@@ -30,8 +33,6 @@ class ShowDialog
 
     public function handle(User $user)
     {
-        $this->markAsRead($user);
-
         return SupportMessage::where(function ($query) use ($user) {
             $query->where('user_id', $user->id)
                 ->orWhere(fn ($query) =>
@@ -46,17 +47,18 @@ class ShowDialog
 
     public function asController(User $user)
     {
+        $previous = URL::previous();
+        if (! Str::contains($previous, '/dialog/')) {
+            session(['return-url' => $previous]);
+        }
+
         return view('admin-support::show', [
             'messages' => $this->handle($user),
             'user' => $user,
+            'opened' => $user->supportMessages()
+                ->where('type', 'userMessage')
+                ->whereNull('read_at')
+                ->count() > 0,
         ]);
-    }
-
-    protected function markAsRead(User $user): void
-    {
-        $user->supportMessages()
-            ->where('type', 'userMessage')
-            ->whereNull('read_at')
-            ->update(['read_at' => Carbon::now()]);
     }
 }

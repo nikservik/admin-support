@@ -34,7 +34,7 @@
                 @endif
             </div>
             <div class="message">
-                {!! $messages[$index]->message !!}
+                @nl2br($messages[$index]->message)
                 @if($messages[$index]->type == 'supportMessage')
                     <div class="controls">
                         <a href="/{{ config('admin-support.route') }}/message/{{ $messages[$index]->id }}">

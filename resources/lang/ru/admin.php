@@ -14,6 +14,7 @@ return [
     'close' => 'Закрыть',
     'closed' => 'Закрыт',
     'close-and-return' => 'Закрыть и вернуться',
+    'return' => 'Вернуться',
     'list-all' => 'Все',
     'list-unread' => 'Открытые',
     'list-search' => 'Результаты поиска',

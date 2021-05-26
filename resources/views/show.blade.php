@@ -59,6 +59,10 @@
                 @endif
             @else
                 <button class="small light button inline-block" disabled>@lang('admin-support::admin.closed')</button>
+                @if(session()->has('return-url'))
+                    <a class="small light button"
+                        href="/{{ config('admin-support.route') }}/dialog/{{ $user->id }}/close/return">@lang('admin-support::admin.return')</a>
+                @endif
             @endif
         </div>
     </div>
